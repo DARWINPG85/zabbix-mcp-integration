@@ -42,6 +42,7 @@ Esta solución proporciona una integración bidireccional entre un servidor MCP 
 
 ### Tokens y APIs necesarios
 - 🔑 **Token de API de Zabbix** (Administration → General → API tokens)
+- 🔑 **CGemini Cli** ([https://makersuite.google.com/app/apikey](https://github.com/google-gemini/gemini-cli))
 - 🔑 **Clave API de Google Gemini** (https://makersuite.google.com/app/apikey)
 
 ## 🚀 Instalación
