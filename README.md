@@ -184,7 +184,15 @@ curl -X POST http://TU_IP_MCP_SERVER:3001/ask-zabbix \
 | "problemas activos" | Muestra alertas actuales |
 | "versión de Zabbix" | Información del servidor |
 
-### Ejemplo de uso con curl
+### Análisis Inteligente y Acciones
+
+| Capacidad| Ejemplo |
+|----------|-------------|
+| Análisis de Tendencias | "¿Qué tendencias preocupantes ves esta semana?" |
+| Correlación de Eventos | "¿Por qué el servidor web está lento desde ayer?"|
+| Acciones Recomendadas | ""¿Debería reiniciar el servicio Apache en web-01?"" |
+| Dashboards Dinámicos | Crea un dashboard de los servidores críticos |
+| Sugerencias Proactivas| "¿Qué servidores necesitan mantenimiento pronto?" |
 
 ```bash
 curl -X POST http://TU_IP_MCP_SERVER:3001/ask-zabbix \
