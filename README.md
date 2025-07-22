@@ -414,7 +414,7 @@ Protección automática contra spam y ataques:
 
 ## 📞 Soporte
 
-- 📧 **Email:** soporte@dccaceresoln.com
+- 📧 **Email:** soporte@ccaceresoln.com
 
 ## 🔄 Changelog
 
