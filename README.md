@@ -128,7 +128,7 @@ MCP_AUTH_TOKEN=tu_token_mcp_seguro_aqui
      ```
 
 3. **Configurar Action:**
-   - Ve a: Configuration → Actions → Create action
+   - Ve a: Alerts → Actions → Triggers action   → Create action --
    - Name: `Send to MCP Server`
    - Conditions: Configurar según necesidades
    - Operations:
