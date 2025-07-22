@@ -21,7 +21,7 @@ Esta solución proporciona una integración bidireccional entre un servidor MCP 
 │                 │    Webhooks     │                 │
 │ - Node.js       │◄──────────────── │ - Zabbix API    │
 │ - Express       │                 │ - PostgreSQL    │
-│ - Gemini AI     │                 │ - Nginx         │
+│ - Gemini Cli    │                 │ - Nginx         │
 │ - Redis         │                 │                 │
 └─────────────────┘                 └─────────────────┘
 ```
