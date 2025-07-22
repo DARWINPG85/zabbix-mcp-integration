@@ -113,7 +113,7 @@ MCP_AUTH_TOKEN=tu_token_mcp_seguro_aqui
    - Copia el token generado
 
 2. **Configurar Media Type:**
-   - Ve a: Administration → Media types → Create media type
+   - Ve a: Alerts → Media types → Create media type
    - Name: `MCP Integration`
    - Type: `Webhook`
    - Script name: `mcp_webhook.py`
