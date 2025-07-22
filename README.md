@@ -28,7 +28,7 @@ Esta solución proporciona una integración bidireccional entre un servidor MCP 
 ## 📋 Prerrequisitos
 
 ### Servidor MCP
-- ✅ Sistema operativo: RHEL 8+, CentOS 8+, Rocky Linux 8+, AlmaLinux 8+
+- ✅ Sistema operativo: RHEL 9+, CentOS 9+, Rocky Linux 9+, AlmaLinux 9+
 - ✅ Memoria RAM: Mínimo 2GB, recomendado 4GB
 - ✅ Espacio en disco: Mínimo 10GB libres
 - ✅ Usuario con privilegios sudo (miembro del grupo `wheel`)
