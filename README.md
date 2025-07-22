@@ -422,7 +422,7 @@ Protección automática contra spam y ataques:
 - ✅ Integración inicial MCP-Zabbix
 - ✅ Servidor web con Express
 - ✅ Cliente de API Zabbix con autenticación por token
-- ✅ Integración con Gemini AI
+- ✅ Integración con Gemini AI/Cli gemini
 - ✅ Scripts de instalación para RHEL/CentOS
 - ✅ Webhook de alertas desde Zabbix
 - ✅ Configuración de firewall y seguridad
@@ -430,4 +430,3 @@ Protección automática contra spam y ataques:
 
 ---
 
-**¡Gracias por usar MCP-Zabbix Integration! 🚀**
