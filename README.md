@@ -105,7 +105,7 @@ MCP_AUTH_TOKEN=tu_token_mcp_seguro_aqui
 #### En Zabbix Web Interface:
 
 1. **Crear Token de API:**
-   - Ve a: Administration → General → API tokens
+   - Ve a: User settings → API tokens → create API token
    - Click "Create API token"
    - Name: `MCP Integration`
    - User: `mcp_user` (o admin)
