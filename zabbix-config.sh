@@ -10,10 +10,10 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # --- Configuración - EDITAR SEGÚN TU ENTORNO ---
-MCP_SERVER_IP="TU_IP_MCP_SERVER"        # Cambiar por la IP del servidor MCP
-ZABBIX_SERVER_IP="TU_IP_ZABBIX_SERVER"  # Cambiar por la IP del servidor Zabbix
-MCP_AUTH_TOKEN="TU_MCP_AUTH_TOKEN"      # Cambiar por tu token de autenticación del MCP
-ZABBIX_DB_PASSWORD="TU_ZABBIX_DB_PASSWORD"  # Cambiar por tu contraseña de la BD de Zabbix
+MCP_SERVER_IP="20.50.0.100"        # Cambiar por la IP del servidor MCP
+ZABBIX_SERVER_IP="20.50.0.10"  # Cambiar por la IP del servidor Zabbix
+MCP_AUTH_TOKEN="a8093d0f104f03f657849cb2ebcf415384199db40d7c47a874646e8f7833c8"      # Cambiar por tu token de autenticación del MCP
+ZABBIX_DB_PASSWORD="zabbix123"  # Cambiar por tu contraseña de la BD de Zabbix
 
 log() {
     echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] $1${NC}"
