@@ -11,9 +11,11 @@ NC='\033[0m'
 
 # --- Configuración - EDITAR SEGÚN TU ENTORNO ---
 MCP_SERVER_IP="20.50.0.100"        # Cambiar por la IP del servidor MCP
-ZABBIX_SERVER_IP="20.50.0.10"  # Cambiar por la IP del servidor Zabbix
-MCP_AUTH_TOKEN="a8093d0f104f03f657849cb2ebcf415384199db40d7c47a874646e8f7833c8"      # Cambiar por tu token de autenticación del MCP
-ZABBIX_DB_PASSWORD="zabbix123"  # Cambiar por tu contraseña de la BD de Zabbix
+ZABBIX_SERVER_IP="20.50.0.10"      # Cambiar por la IP del servidor Zabbix
+MCP_AUTH_TOKEN="a8093d0f104f03f657849cb2ebcf415384199db40d7c47a874646e8f7833c8" # Cambiar por tu token de autenticación del MCP
+ZABBIX_DB_PASSWORD="zabbix123"     # Cambiar por tu contraseña de la BD de Zabbix
+ZABBIX_DB_NAME="zabbix"             # Nombre de la base de datos de Zabbix
+ZABBIX_DB_USER="zabbix"             # Usuario de la base de datos de Zabbix
 
 log() {
     echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] $1${NC}"
@@ -63,15 +65,15 @@ log "✅ Servidor Zabbix detectado"
 log "🔍 Verificando usuario MCP en base de datos..."
 
 echo "🔍 Verificando usuario mcp_user en base de datos:"
-# Se pasa el SQL directamente al comando psql para no crear archivos en /tmp
-PGPASSWORD="$ZABBIX_DB_PASSWORD" psql -h localhost -U zabbix -d zabbixdb << 'EOF'
+# Cambiar a MySQL
+MYSQL_PASSWORD="$ZABBIX_DB_PASSWORD" mysql -h localhost -u "$ZABBIX_DB_USER" "$ZABBIX_DB_NAME" << 'EOF'
 -- Verificar usuario mcp_user
 SELECT 
     u.userid,
     u.username, 
     u.roleid, 
-    r.name as role_name,
-    'Usuario encontrado' as status
+    r.name AS role_name,
+    'Usuario encontrado' AS status
 FROM users u 
 LEFT JOIN role r ON u.roleid = r.roleid 
 WHERE u.username = 'mcp_user';
@@ -80,8 +82,8 @@ WHERE u.username = 'mcp_user';
 SELECT 
     u.username,
     ug.usrgrpid, 
-    g.name as group_name,
-    'Grupo asignado' as status
+    g.name AS group_name,
+    'Grupo asignado' AS status
 FROM users u
 JOIN users_groups ug ON u.userid = ug.userid
 JOIN usrgrp g ON ug.usrgrpid = g.usrgrpid
