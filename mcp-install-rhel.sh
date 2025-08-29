@@ -722,7 +722,7 @@ log "Verificando el token de API de Zabbix desde el archivo .env..."
 ZABBIX_API_URL=$(grep ZABBIX_URL $INSTALL_DIR/.env | cut -d '=' -f2)
 ZABBIX_API_TOKEN=$(grep ZABBIX_API_TOKEN $INSTALL_DIR/.env | cut -d '=' -f2)
 
-if [ "$ZABBIX_API_TOKEN" == "b6d89dcc0f08f33d14dd3f63235a3fa7866cb601cea19911ecb76de04d35abf" ]; then
+if [ "$ZABBIX_API_TOKEN" == "b6d89dcc0f08f33d14dd3f63235a3fa7866cb601cea19911ecb76de04d35abfX" ]; then
     error "El token de API de Zabbix no ha sido configurado en el archivo .env"
     error "   SOLUCIÓN: Edita el archivo 'nano $INSTALL_DIR/.env' y pega tu token en la variable ZABBIX_API_TOKEN."
     exit 1
@@ -734,7 +734,6 @@ API_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json-rpc" \
     \"jsonrpc\": \"2.0\",
     \"method\": \"apiinfo.version\",
     \"params\": {},
-    \"auth\": \"$ZABBIX_API_TOKEN\",
     \"id\": 1
 }" $ZABBIX_API_URL)
 
