@@ -164,15 +164,15 @@ if [ ! -f "$INSTALL_DIR/.env" ]; then
 ZABBIX_URL=$ZABBIX_URL
 ZABBIX_SERVER_IP=$ZABBIX_SERVER_IP
 # --- NUEVO: Usa un token de API en lugar de usuario/contraseña ---
-ZABBIX_API_TOKEN=YOUR_ZABBIX_API_TOKEN_HERE
+ZABBIX_API_TOKEN=b6d89dcc0f08f33d14dd3f63235a3fa7866cb601cea19911ecb76de04d35abf
 
 # Configuración de Gemini AI
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
+GEMINI_API_KEY=AIzaSyCAi8ntLzka9HHAgQ2dke_1j4wqUeD80WI
 
 # Configuración del servidor MCP
 NODE_ENV=production
 PORT=3001
-MCP_AUTH_TOKEN=YOUR_SECURE_MCP_TOKEN_HERE
+MCP_AUTH_TOKEN=a8093d0f104f03f657849cb2ebcf415384199db40d7c47a874646e8f7833c8
 LOG_LEVEL=info
 
 # Configuración de Redis
@@ -538,7 +538,7 @@ class ZabbixClient {
     }
 
     async call(method, params = {}) {
-        if (!this.token || this.token === 'YOUR_ZABBIX_API_TOKEN_HERE') {
+        if (!this.token || this.token === 'b6d89dcc0f08f33d14dd3f63235a3fa7866cb601cea19911ecb76de04d35abf') {
             const errorMessage = 'Zabbix API token is not configured in .env file (ZABBIX_API_TOKEN).';
             logger.error(errorMessage);
             throw new Error(errorMessage);
@@ -722,7 +722,7 @@ log "Verificando el token de API de Zabbix desde el archivo .env..."
 ZABBIX_API_URL=$(grep ZABBIX_URL $INSTALL_DIR/.env | cut -d '=' -f2)
 ZABBIX_API_TOKEN=$(grep ZABBIX_API_TOKEN $INSTALL_DIR/.env | cut -d '=' -f2)
 
-if [ "$ZABBIX_API_TOKEN" == "YOUR_ZABBIX_API_TOKEN_HERE" ]; then
+if [ "$ZABBIX_API_TOKEN" == "b6d89dcc0f08f33d14dd3f63235a3fa7866cb601cea19911ecb76de04d35abf" ]; then
     error "El token de API de Zabbix no ha sido configurado en el archivo .env"
     error "   SOLUCIÓN: Edita el archivo 'nano $INSTALL_DIR/.env' y pega tu token en la variable ZABBIX_API_TOKEN."
     exit 1
