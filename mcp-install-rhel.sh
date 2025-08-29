@@ -12,9 +12,9 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # --- Configuración - EDITAR SEGÚN TU ENTORNO ---
-ZABBIX_URL="http://TU_DOMINIO_ZABBIX/zabbix/api_jsonrpc.php"  # Cambiar por tu dominio/IP de Zabbix
-ZABBIX_SERVER_IP="TU_IP_ZABBIX_SERVER"  # Cambiar por la IP del servidor Zabbix
-MCP_SERVER_IP="TU_IP_MCP_SERVER"        # Cambiar por la IP del servidor MCP
+ZABBIX_URL="http://20.50.0.10/zabbix/api_jsonrpc.php"  # Cambiar por tu dominio/IP de Zabbix
+ZABBIX_SERVER_IP="20.50.0.10"  # Cambiar por la IP del servidor Zabbix
+MCP_SERVER_IP="20.50.0.100"        # Cambiar por la IP del servidor MCP
 INSTALL_DIR="/opt/mcp-zabbix"
 
 # --- Funciones de Logging ---
