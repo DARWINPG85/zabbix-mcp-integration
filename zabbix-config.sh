@@ -8,14 +8,20 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+RED='\033[0;31m'
 
 # --- Configuración - EDITAR SEGÚN TU ENTORNO ---
 MCP_SERVER_IP="20.50.0.100"        # Cambiar por la IP del servidor MCP
 ZABBIX_SERVER_IP="20.50.0.10"      # Cambiar por la IP del servidor Zabbix
 MCP_AUTH_TOKEN="a8093d0f104f03f657849cb2ebcf415384199db40d7c47a874646e8f7833c8" # Cambiar por tu token de autenticación del MCP
-ZABBIX_DB_PASSWORD="zabbix123"     # Cambiar por tu contraseña de la BD de Zabbix
-ZABBIX_DB_NAME="zabbix"             # Nombre de la base de datos de Zabbix
-ZABBIX_DB_USER="zabbix"             # Usuario de la base de datos de Zabbix
+
+# Credenciales de la base de datos Zabbix
+DB_TYPE="MySQL"                     # Tipo de base de datos
+DB_HOST="localhost"                 # Dirección del host de la base de datos
+DB_PORT="0"                         # Puerto de la base de datos (0 usa el puerto por defecto)
+DB_NAME="zabbix"                    # Nombre de la base de datos
+DB_USER="zabbix"                    # Usuario de la base de datos
+DB_PASS="zabbix123"                 # Contraseña de la base de datos
 
 log() {
     echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] $1${NC}"
@@ -31,7 +37,7 @@ error() {
 }
 
 check_config() {
-    if [[ "$MCP_SERVER_IP" == "TU_IP_MCP_SERVER" ]] || [[ "$ZABBIX_SERVER_IP" == "TU_IP_ZABBIX_SERVER" ]]; then
+    if [[ "$MCP_SERVER_IP" == "20.50.0.100" ]] || [[ "$ZABBIX_SERVER_IP" == "20.50.0.10" ]]; then
         error "CONFIGURACIÓN REQUERIDA: Edita las variables al inicio del script con las IPs y credenciales correctas de tu entorno."
     fi
 }
@@ -65,8 +71,7 @@ log "✅ Servidor Zabbix detectado"
 log "🔍 Verificando usuario MCP en base de datos..."
 
 echo "🔍 Verificando usuario mcp_user en base de datos:"
-# Cambiar a MySQL
-MYSQL_PASSWORD="$ZABBIX_DB_PASSWORD" mysql -h localhost -u "$ZABBIX_DB_USER" "$ZABBIX_DB_NAME" << 'EOF'
+MYSQL_PASSWORD="$DB_PASS" mysql -h "$DB_HOST" -u "$DB_USER" "$DB_NAME" << 'EOF'
 -- Verificar usuario mcp_user
 SELECT 
     u.userid,
