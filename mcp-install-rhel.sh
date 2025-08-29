@@ -67,8 +67,14 @@ log "✅ Confirmado: Este es el servidor MCP"
 # 1. Instalar dependencias del sistema con DNF
 log "📦 Habilitando el repositorio EPEL (Extra Packages for Enterprise Linux)..."
 sudo dnf install -y epel-release
+sudo dnf makecache  # Actualizar información de los repositorios 
+
+# Limpiar caché de dnf para evitar datos obsoletos
+log "🧹 Limpiando el caché de DNF..."
+sudo dnf clean all
 
 log "📦 Instalando dependencias del sistema con DNF..."
+sudo dnf install -y epel-release
 sudo dnf install -y \
     curl \
     git \
