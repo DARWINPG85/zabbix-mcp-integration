@@ -30,7 +30,7 @@ error() {
 }
 
 check_config() {
-    if [[ "$MCP_SERVER_IP" == "20.50.0.100" ]] || [[ "$ZABBIX_SERVER_IP" == "20.50.0.10" ]]; then
+    if [[ "$MCP_SERVER_IP" == "20.50.1.100" ]] || [[ "$ZABBIX_SERVER_IP" == "20.50.1.10" ]]; then
         error "CONFIGURACIÓN REQUERIDA: Edita las variables al inicio del script con las IPs y credenciales correctas de tu entorno."
     fi
 }
