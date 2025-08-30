@@ -7,16 +7,14 @@ set -e
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+RED='\033[0;31m'  # Añadir color rojo para errores
 NC='\033[0m'
-RED='\033[0;31m'  # Agregado para mensajes de error
 
 # --- Configuración - EDITAR SEGÚN TU ENTORNO ---
-MCP_SERVER_IP="20.50.0.100"        # Cambiar por la IP del servidor MCP
-ZABBIX_SERVER_IP="20.50.0.10"      # Cambiar por la IP del servidor Zabbix
-MCP_AUTH_TOKEN="a8093d0f104f03f657849cb2ebcf415384199db40d7c47a874646e8f7833c8" # Cambiar por tu token de autenticación del MCP
-ZABBIX_DB_PASSWORD="zabbix123"     # Cambiar por tu contraseña de la BD de Zabbix
-DB_NAME="zabbix"                    # Nombre de la base de datos Zabbix
-DB_USER="zabbix"                    # Usuario de la base de datos Zabbix
+MCP_SERVER_IP="20.50.0.100"             # Cambiar por la IP del servidor MCP
+ZABBIX_SERVER_IP="20.50.0.10"            # Cambiar por la IP del servidor Zabbix
+MCP_AUTH_TOKEN="a809d3d0f104f03f657849dcb2ebcfc41384199d0ab7c47a874646e8f7833c8"  # Cambiar por tu token de autenticación del MCP
+ZABBIX_DB_PASSWORD="zabbix123"           # Cambiar por tu contraseña de la BD de Zabbix
 
 log() {
     echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] $1${NC}"
@@ -32,7 +30,7 @@ error() {
 }
 
 check_config() {
-    if [[ "$MCP_SERVER_IP" == "20.50.0.100" ]] || [[ "$ZABBIX_SERVER_IP" == "20.50.0.10" ]]; then
+    if [[ "$MCP_SERVER_IP" == "TU_IP_MCP_SERVER" ]] || [[ "$ZABBIX_SERVER_IP" == "TU_IP_ZABBIX_SERVER" ]]; then
         error "CONFIGURACIÓN REQUERIDA: Edita las variables al inicio del script con las IPs y credenciales correctas de tu entorno."
     fi
 }
@@ -62,35 +60,36 @@ fi
 
 log "✅ Servidor Zabbix detectado"
 
-# 1. Verificar usuario MCP en base de datos
-log "🔍 Verificando usuario MCP en base de datos..."
+# 1. Verificar usuario Admin en base de datos
+log "🔍 Verificando usuario Admin en base de datos..."
 
-echo "🔍 Verificando usuario mcp_user en base de datos:"
-MYSQL_PASSWORD="$ZABBIX_DB_PASSWORD" mysql -h localhost -u "$DB_USER" "$DB_NAME" << 'EOF'
--- Verificar usuario mcp_user
+echo "🔍 Verificando usuario Admin en base de datos:"
+# Se pasa el SQL directamente al comando MySQL para no crear archivos en /tmp
+MYSQL_PWD="$ZABBIX_DB_PASSWORD" mysql -h localhost -u Admin zabbix -e "
+-- Verificar usuario Admin
 SELECT 
     u.userid,
     u.username, 
     u.roleid, 
-    r.name AS role_name,
-    'Usuario encontrado' AS status
+    r.name as role_name,
+    'Usuario encontrado' as status
 FROM users u 
 LEFT JOIN role r ON u.roleid = r.roleid 
-WHERE u.username = 'mcp_user';
+WHERE u.username = 'Admin';
 
 -- Verificar grupos del usuario
 SELECT 
     u.username,
     ug.usrgrpid, 
-    g.name AS group_name,
-    'Grupo asignado' AS status
+    g.name as group_name,
+    'Grupo asignado' as status
 FROM users u
 JOIN users_groups ug ON u.userid = ug.userid
 JOIN usrgrp g ON ug.usrgrpid = g.usrgrpid
-WHERE u.username = 'mcp_user';
-EOF
+WHERE u.username = 'Admin';
+"
 
-log "✅ Usuario MCP verificado en base de datos"
+log "✅ Usuario Admin verificado en base de datos"
 
 # 2. Instalar dependencias para webhook
 log "📦 Instalando dependencias para webhook..."
@@ -253,10 +252,10 @@ echo "   - Name: Send to MCP Server"
 echo "   - Conditions: Configure según necesidades"
 echo "   - Operations:"
 echo "     - Send message"
-echo "     - Send to users: mcp_user"
+echo "     - Send to users: Admin"
 echo "     - Send via: MCP Integration"
 echo ""
-echo "3. 👤 Configurar User Media (Administration > Users > mcp_user):"
+echo "3. 👤 Configurar User Media (Administration > Users > Admin):"
 echo "   - Media tab > Add"
 echo "   - Type: MCP Integration"
 echo "   - Send to: mcp_server"
