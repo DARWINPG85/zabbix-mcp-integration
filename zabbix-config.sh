@@ -60,13 +60,13 @@ fi
 
 log "✅ Servidor Zabbix detectado"
 
-# 1. Verificar usuario Admin en base de datos
-log "🔍 Verificando usuario Admin en base de datos..."
+# 1. Verificar usuario zabbix en base de datos
+log "🔍 Verificando usuario zabbix en base de datos..."
 
-echo "🔍 Verificando usuario Admin en base de datos:"
+echo "🔍 Verificando usuario zabbix en base de datos:"
 # Se pasa el SQL directamente al comando MySQL para no crear archivos en /tmp
-MYSQL_PWD="$ZABBIX_DB_PASSWORD" mysql -h localhost -u Admin zabbix -e "
--- Verificar usuario Admin
+MYSQL_PWD="$ZABBIX_DB_PASSWORD" mysql -h localhost -u zabbix zabbix -e "
+-- Verificar usuario zabbix
 SELECT 
     u.userid,
     u.username, 
@@ -75,7 +75,7 @@ SELECT
     'Usuario encontrado' as status
 FROM users u 
 LEFT JOIN role r ON u.roleid = r.roleid 
-WHERE u.username = 'Admin';
+WHERE u.username = 'zabbix';
 
 -- Verificar grupos del usuario
 SELECT 
@@ -86,10 +86,10 @@ SELECT
 FROM users u
 JOIN users_groups ug ON u.userid = ug.userid
 JOIN usrgrp g ON ug.usrgrpid = g.usrgrpid
-WHERE u.username = 'Admin';
+WHERE u.username = 'zabbix';
 "
 
-log "✅ Usuario Admin verificado en base de datos"
+log "✅ Usuario zabbix verificado en base de datos"
 
 # 2. Instalar dependencias para webhook
 log "📦 Instalando dependencias para webhook..."
