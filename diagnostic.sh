@@ -7,8 +7,8 @@ echo "Servidor: $(hostname -I)"
 echo ""
 
 # Variables de configuración - EDITAR SEGÚN TU ENTORNO
-MCP_SERVER_IP="TU_IP_MCP_SERVER"    # Cambiar por la IP del servidor MCP
-ZABBIX_SERVER_IP="TU_IP_ZABBIX_SERVER"  # Cambiar por la IP del servidor Zabbix
+MCP_SERVER_IP="20.50.0.100"    # Cambiar por la IP del servidor MCP
+ZABBIX_SERVER_IP="20.50.0.10"  # Cambiar por la IP del servidor Zabbix
 
 # Test básico de red
 echo "1. Test de conectividad básica:"
